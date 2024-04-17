@@ -118,6 +118,5 @@ def usage_demo():
         print("-" * 88)
 
 if __name__ == "__main__":
+    load_dotenv()
     usage_demo()
- 
-
