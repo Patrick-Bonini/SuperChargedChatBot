@@ -109,7 +109,7 @@ def usage_demo():
     wrapper = Claude3Wrapper(client)
 
     # Read the initial prompt from a text file
-    with open("formatted_sdkperf.txt", "r") as file:
+    with open("formatted_prompt.txt", "r") as file:
         initial_prompt = file.read()
 
     # Invoke Claude 3 with a text prompt
