@@ -8,7 +8,6 @@ Shows how to use the AWS SDK for Python (Boto3) with the Amazon Bedrock Runtime 
 to run inferences using Anthropic Claude 3 models.
 """
 
-import base64
 import json
 import logging
 
