@@ -10,6 +10,8 @@ to run inferences using Anthropic Claude 3 models.
 
 import json
 import logging
+from dotenv import load_dotenv
+import os
 
 import boto3
 from botocore.exceptions import ClientError
@@ -117,3 +119,5 @@ def usage_demo():
 
 if __name__ == "__main__":
     usage_demo()
+ 
+
