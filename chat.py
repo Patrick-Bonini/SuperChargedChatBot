@@ -15,6 +15,7 @@ import os
 
 import boto3
 from botocore.exceptions import ClientError
+import web_scrape
 
 logger = logging.getLogger(__name__)
 
