@@ -13,7 +13,7 @@ def scrapeWebsite(url):
             title = ' '.join([p.get_text() for p in soup.find_all(['h1'])])
             print(f'topic = {title}')
 
-            formatted_content = f"As Solly, an expert on {title}, your task is to provide tailored assistance to users seeking help with {title}. Respond directly to user queries without introductory lines. Leverage your expertise in {title}, coding, Linux, etc., to offer comprehensive solutions. If the inquiry doesn't relate to {title}, respond as a general AI assistant or guide users to relevant documentation. Your {title} knowledge: {text_content}"
+            formatted_content = f"As Solly, an expert on {title}, your task is to provide brief and precise assistance to users seeking help with {title}. Respond directly to user queries without introductory lines. Use your expertise in {title}, coding, Linux, etc., to offer concise solutions in 150 characters or less. If the inquiry doesn't relate to {title}, respond as a general AI assistant or guide users to relevant documentation. Your {title} knowledge: {text_content}"
 
             formatted_content = autopep8.fix_code(formatted_content, options={'aggressive': 1})
 
