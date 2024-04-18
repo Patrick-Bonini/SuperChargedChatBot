@@ -27,7 +27,7 @@ cd backend
 ```
 
 ```
-python chat.py
+python server.py
 ```
 
 ## Frontend
