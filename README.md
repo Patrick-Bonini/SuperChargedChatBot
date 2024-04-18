@@ -2,7 +2,7 @@
 1. Clone repository
 `git clone https://github.com/Patrick-Bonini/SuperChargedChatBot`
 
-2. Create an env file `.env` in the root directory with the contents:
+2. Create an env file `.env` in the backend directory with the contents:
 
 ```
 AWS_SECRET_ACCESS_KEY=key
@@ -16,4 +16,4 @@ Fill in the key and id with valid keys and ids
 
 4. Run with 
 
-`python chat.py`
+`python backend/chat.py`
