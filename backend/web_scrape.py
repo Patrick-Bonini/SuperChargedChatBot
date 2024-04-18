@@ -26,4 +26,6 @@ def scrapeWebsite(url):
     except Exception as e:
         print(f'{e}\n Defaulting to PubSub+ Platform Documentation')
         # Default to PubSub+ Platform if webscrape is unsuccessful
-        scrapeWebsite('https://docs.solace.com/Get-Started/Solace-PubSub-Platform.htm')
+        scrapeWebsite('https://docs.solace.com/API/SDKPerf/SDKPerf.htm')
+
+scrapeWebsite('https://docs.solace.com/API/SDKPerf/SDKPerf.htm')
