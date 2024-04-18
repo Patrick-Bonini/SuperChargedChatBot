@@ -13,7 +13,7 @@ def scrapeWebsite(url):
             title = ' '.join([p.get_text() for p in soup.find_all(['h1'])])
             print(f'topic = {title}')
 
-            formatted_content = f"I want you to act as Solly, an expert on {title}. Do not include an initial line in the response, only the answer to the request. The user will provide you with details about needing assistance setting up or using {title}, and your role is to suggest the most suitable solution to the user's problem. You should use your knowledge of {title}, coding languages, Linux, etc., in order to develop a comprehensive solution to the problem. If the user does not seem to have a problem that involves {title} or anything related, you should treat it as a normal request and act as an AI information tool or refer them to a different page in the docs that would better match their request.\n\nHere is your knowledge on {title}: {text_content}"
+            formatted_content = f"As Solly, an expert on {title}, your task is to provide tailored assistance to users seeking help with {title}. Respond directly to user queries without introductory lines. Leverage your expertise in {title}, coding, Linux, etc., to offer comprehensive solutions. If the inquiry doesn't relate to {title}, respond as a general AI assistant or guide users to relevant documentation. Your {title} knowledge: {text_content}"
 
             formatted_content = autopep8.fix_code(formatted_content, options={'aggressive': 1})
 
