@@ -15,9 +15,10 @@ import os
 
 import boto3
 from botocore.exceptions import ClientError
-import web_scrape
+from web_scrape import scrapeWebsite
 
 logger = logging.getLogger(__name__)
+EXIT_FUNCTIONS = ['q', 'quit', 'leave', 'url', 'exit', 'esc', 'escape']
 
 
 # snippet-start:[python.example_code.bedrock-runtime.Claude3Wrapper.class]
@@ -107,17 +108,28 @@ def usage_demo():
 
     client = boto3.client(service_name="bedrock-runtime", region_name="us-east-1")
     wrapper = Claude3Wrapper(client)
-
     # Read the initial prompt from a text file
     with open("formatted_prompt.txt", "r") as file:
         initial_prompt = file.read()
 
-    # Invoke Claude 3 with a text prompt
-    while True:
+    loop = True
+    while(loop):
         text_prompt = input("Chat: ")
-        wrapper.invoke_claude_3_with_text(initial_prompt + "the user said:" + text_prompt)
-        print("-" * 88)
+        if(text_prompt.lower() not in EXIT_FUNCTIONS):
+            # Invoke Claude 3 with a text prompt
+            wrapper.invoke_claude_3_with_text(initial_prompt + "the user said:" + text_prompt)
+            print("-" * 88)
+        else:
+            loop = False
 
 if __name__ == "__main__":
     load_dotenv()
-    usage_demo()
+    loop = True
+    while(loop):
+        url = input("Enter URL: ")
+        if(url.lower() not in EXIT_FUNCTIONS):
+            scrapeWebsite(url)
+            usage_demo()
+        else:
+            loop = False
+        
