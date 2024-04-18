@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   /* background-color: #f5f5f5; */
-  background-image: url('./images/backgroundimage.png');
+  background-image: url('./images/background.png');
   background-size: cover; /* or use 'contain' if you want to see the entire image */
   background-position: center; /* centers the image */
   background-repeat: no-repeat; /* prevents the image from repeating */
