@@ -3,3 +3,4 @@ python_dotenv
 requests
 bs4
 autopep8
+flask

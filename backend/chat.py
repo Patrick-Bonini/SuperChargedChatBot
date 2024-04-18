@@ -10,7 +10,6 @@ to run inferences using Anthropic Claude 3 models.
 
 import json
 import logging
-from dotenv import load_dotenv
 import os
 
 import boto3
@@ -82,7 +81,7 @@ class Claude3Wrapper:
             for output in output_list:
                 print(output["text"])
 
-            return result
+            return output["text"]
 
         except ClientError as err:
             logger.error(
@@ -97,7 +96,7 @@ class Claude3Wrapper:
 # snippet-end:[python.example_code.bedrock-runtime.Claude3Wrapper.class]
 
 
-def usage_demo():
+def usage_demo(text_prompt):
     """
     Demonstrates the invocation of Claude 3 models.
     """
@@ -109,27 +108,6 @@ def usage_demo():
     client = boto3.client(service_name="bedrock-runtime", region_name="us-east-1")
     wrapper = Claude3Wrapper(client)
     # Read the initial prompt from a text file
-    with open("formatted_prompt.txt", "r") as file:
+    with open("formatted_prompt.txt", "r", encoding="utf-8", errors="ignore") as file:
         initial_prompt = file.read()
-
-    loop = True
-    while(loop):
-        text_prompt = input("Chat: ")
-        if(text_prompt.lower() not in EXIT_FUNCTIONS):
-            # Invoke Claude 3 with a text prompt
-            wrapper.invoke_claude_3_with_text(initial_prompt + "the user said:" + text_prompt)
-            print("-" * 88)
-        else:
-            loop = False
-
-if __name__ == "__main__":
-    load_dotenv()
-    loop = True
-    while(loop):
-        url = input("Enter URL: ")
-        if(url.lower() not in EXIT_FUNCTIONS):
-            scrapeWebsite(url)
-            usage_demo()
-        else:
-            loop = False
-        
+        return wrapper.invoke_claude_3_with_text(initial_prompt + "the user said:" + text_prompt)

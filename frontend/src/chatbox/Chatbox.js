@@ -6,19 +6,35 @@ const Chatbox = ({ isOpen }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const scrollRef = useRef();
-  const sendMessage = (event) => {
+
+  const sendMessage = async (event) => {
     event.preventDefault();
     if (input) {
       setMessages([...messages, { text: input, sender: "user" }]);
       setInput("");
-      // Here you can add the code to send the message to your chatbot and get the response
-      // For now, we'll just echo the user's message
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: input, sender: "bot" },
-      ]);
+      try {
+        const response = await fetch("http://127.0.0.1:5000", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ input }),
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        // Assume your backend responds with a message property
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: data.message, sender: "bot" },
+        ]);
+      } catch (error) {
+        console.error("Error sending message:", error);
+      }
     }
   };
+  
 
   return (
     isOpen && (
