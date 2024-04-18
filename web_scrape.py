@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import autopep8
 
 def scrapeWebsite(url):
     try:
@@ -12,8 +13,10 @@ def scrapeWebsite(url):
             title = ' '.join([p.get_text() for p in soup.find_all(['h1'])])
             print(f'topic = {title}')
 
-            formatted_content = f"I want you to act as SolAi, an expert on {title}. Do not include an initial line in the response, only the answer to the request. The user will provide you with details related to a user needing assistance setting up or using {title}, and your role is to suggest the most suitable solution to the user's problem. You should use your knowledge of {title}, coding languages, Linux, etc., in order to develop a comprehensive solution to the problem. The user will provide you with the info, if the user does not seem to have a problem that involves {title} or anything related, you should treat it as a normal request and act as an AI information tool.\n\nHere is your knowledge on {title}: {text_content}"
-            
+            formatted_content = f"I want you to act as Solly, an expert on {title}. Do not include an initial line in the response, only the answer to the request. The user will provide you with details about needing assistance setting up or using {title}, and your role is to suggest the most suitable solution to the user's problem. You should use your knowledge of {title}, coding languages, Linux, etc., in order to develop a comprehensive solution to the problem. If the user does not seem to have a problem that involves {title} or anything related, you should treat it as a normal request and act as an AI information tool or refer them to a different page in the docs that would better match their request.\n\nHere is your knowledge on {title}: {text_content}"
+
+            formatted_content = autopep8.fix_code(formatted_content, options={'aggressive': 1})
+
             with open('formatted_prompt.txt', 'w') as file:
                 file.write(formatted_content)
             print('Scraping successful. Formatted content saved to "formatted_prompt.txt"')
