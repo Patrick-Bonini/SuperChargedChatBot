@@ -5,7 +5,11 @@
   width: 100vw;
   align-items: center;
   justify-content: center;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
+  background-image: url('./images/backgroundimage.png');
+  background-size: cover; /* or use 'contain' if you want to see the entire image */
+  background-position: center; /* centers the image */
+  background-repeat: no-repeat; /* prevents the image from repeating */
 }
 
 .message-container {
@@ -32,7 +36,7 @@
 
 .user {
   align-self: flex-end;
-  background-color: #007bff;
+  background-color: #00CE9A;
   color: white;
 }
 
@@ -56,7 +60,7 @@
 .message-form button {
   padding: 10px 20px;
   border: none;
-  background-color: #007bff;
+  background-color: #00CE9A;
   color: white;
   cursor: pointer;
 }
@@ -85,7 +89,7 @@
   position: fixed;
   bottom: 100px;
   right: 20px;
-  width: 300px;
+  width: 350px;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -96,4 +100,50 @@
 
 .chatbox.open {
   height: 500px;
+}
+
+.bot .picture-icon {
+  position: relative;
+  top: 70px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.user .picture-icon{
+  position:relative;
+  top: 70px;
+  left:20px;
+  width: 30px;
+  height:30px;
+  border-radius: 50%;
+  border: 1px solid black;
+
+}
+
+.pfp {
+  border: 1px solid black;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: black; }
+}
+
+.typing-animation {
+  overflow: hidden;
+  border-right: .15em solid black;
+  white-space: nowrap;
+  margin: 0 auto;
+  animation: typing 1.5s steps(30, end), blink .75s step-end infinite;
 }
