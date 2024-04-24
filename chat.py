@@ -73,14 +73,8 @@ class Claude3Wrapper:
             input_tokens = result["usage"]["input_tokens"]
             output_tokens = result["usage"]["output_tokens"]
             output_list = result.get("content", [])
-
-            print("Invocation details:")
-            print(f"- The input length is {input_tokens} tokens.")
-            print(f"- The output length is {output_tokens} tokens.")
-
-            print(f"- The model returned {len(output_list)} response(s):")
             for output in output_list:
-                print(output["text"])
+                print("Response: " + output["text"])
 
             return result
 
